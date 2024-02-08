@@ -5,11 +5,13 @@ Short description of the project.
 ## Team Information
 
 **Team ID:** team-id (our internal id)  
-**Problem/Project name:** (e.g. MicroRTS, Killer Sudoku, etc.)  
-**Team Name:** Team Name   
+**Problem/Project name:** Nerdle  
+**Team Name:** Worm   
 **Members (N):**  
-- Rufus Bobcat (email: bobcat@ohio.edu, gh: https://github.com/rufusbobcat)
-
+- Dalton Muck (email: tm033520@ohio.edu, gh: https://github.com/Dalton-Muck)
+- Jade O'shaughnessy
+- Cooper Young
+- Maya Roediger
 ## About this project
 
 A longer version of your project description.
