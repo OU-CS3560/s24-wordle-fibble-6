@@ -6,12 +6,12 @@ Short description of the project.
 
 **Team ID:** team-id (our internal id)  
 **Problem/Project name:** Nerdle  
-**Team Name:** Worm   
+**Team Name:** YORM   
 **Members (N):**  
 - Dalton Muck (email: tm033520@ohio.edu, gh: https://github.com/Dalton-Muck)
-- Jade O'shaughnessy
-- Cooper Young
-- Maya Roediger
+- Jade O'Shaughnessy (email: js973521@ohio.edu, gh: https://github.com/joshaughnessy22)
+- Cooper Young (email: cy103421@ohio.edu, gh: https://github.com/CooperTYoung)
+- Maya Roediger (email:   , gh: https://github.com/Maya-Roediger)
 ## About this project
 
 A longer version of your project description.
