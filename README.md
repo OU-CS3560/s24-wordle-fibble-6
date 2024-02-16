@@ -36,3 +36,18 @@ Figma: This platoform will be used to showcase the User interface of the project
 
 ## How to build/compile
 
+Use the following steps to build and run the web-app:
+
+1. Navigate to the **app/src/nerdle** directory
+    - **_cd app/src/nerdle_**
+2.  Change current node version to 18
+    - **_nvm use 18_**
+    - The response message should appear as: 
+        - **"Now using node v18.19.0 (npm v10.2.3)"**
+    - Additionally, a **node_modules** folder should now be installed in the **app** directory
+3. Build (stay in the **app/src/nerdle** directory!!!)
+    - **_npm run build_**
+4. Start
+    - **_npm run start_**
+5. On your preferred web browser, navigate to 
+    - **http://localhost:4200/**
