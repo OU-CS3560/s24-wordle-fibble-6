@@ -1,15 +1,16 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   //import AppComponent here instead of declaring it
-  //not sure what common module does
-  imports:[CommonModule, AppComponent],
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  imports: [
+    NgIf,
+    NgFor
+  ]
 })
 export class AppComponent {
   keyboard=[
