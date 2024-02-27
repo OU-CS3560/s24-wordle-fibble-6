@@ -43,9 +43,33 @@ export class AppComponent {
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
-  handleChange(key:any){
-    console.log({key})
-    this.boxes[this.rowIndex][this.currentRowIndex]={class:'',key:key};
-    console.log({box:this.boxes})
+  
+  regularChange(key:any){
+    if(this.currentRowIndex < 8){
+      console.log({key})
+      this.boxes[this.rowIndex][this.currentRowIndex]={class:'',key:key};
+      console.log({box:this.boxes})
+
+      //move to next box after entering a key
+      this.currentRowIndex = this.currentRowIndex + 1;
+    }
+  }
+  
+  deleteChange(key:any){
+    if(key == 'BACKSPACE'){
+      if(this.currentRowIndex > 0){
+        this.currentRowIndex = this.currentRowIndex - 1;
+        this.boxes[this.rowIndex][this.currentRowIndex] = {class: '', key: ''};
+      }
+    }
+  }
+
+  enterChange(key:any){
+    if(key == 'ENTER'){
+      if(this.currentRowIndex == 8){
+        this.currentRowIndex = 0;
+        this.rowIndex = this.rowIndex + 1;
+      }
+    }
   }
 }
