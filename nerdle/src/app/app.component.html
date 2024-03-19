@@ -3,6 +3,8 @@
     <a class ="teamname">by yorm</a>
 </div>
 
+<input type="text" (keypress)="onKeyPress($event)" (keydown)="onDelete($event)">
+
 <div class = "main-content">
     <div class = "boxes">
         <ng-container *ngFor = "let item of boxes">
@@ -27,56 +29,3 @@
         </ng-container>
     </div>
 </div>
-<!--
-<div class = "grid-container">
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-
-</div>
--->

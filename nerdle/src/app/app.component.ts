@@ -56,7 +56,7 @@ export class AppComponent {
   }
   
   deleteChange(key:any){
-    if(key == 'BACKSPACE'){
+    if(key == 'Backspace'){
       if(this.currentRowIndex > 0){
         this.currentRowIndex = this.currentRowIndex - 1;
         this.boxes[this.rowIndex][this.currentRowIndex] = {class: '', key: ''};
@@ -65,11 +65,33 @@ export class AppComponent {
   }
 
   enterChange(key:any){
-    if(key == 'ENTER'){
+    if(key == 'Enter'){
       if(this.currentRowIndex == 8){
         this.currentRowIndex = 0;
         this.rowIndex = this.rowIndex + 1;
       }
     }
   }
+
+  onKeyPress(event:any){
+    const key = event.key
+    const validKey = this.keyboard.find(k => k.key === key);
+
+
+    console.log(event)
+      if(event.key === 'Enter'){
+        this.enterChange(event.key)
+      }
+      else if(validKey){
+        this.regularChange(key)
+      }
+  }
+
+  onDelete(event: any){
+    const key = event.key
+    if(key === 'Backspace'){
+      this.deleteChange(key)
+    }
+  }
 }
+
