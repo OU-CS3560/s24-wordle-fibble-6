@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { NgIf, NgFor } from '@angular/common';
 
 @Component({
@@ -73,7 +73,8 @@ export class AppComponent {
     }
   }
 
-  onKeyPress(event:any){
+  @HostListener('window:keypress', ['$event'])
+  onKeyPress(event: KeyboardEvent){
     const key = event.key
     const validKey = this.keyboard.find(k => k.key === key);
 
@@ -86,8 +87,8 @@ export class AppComponent {
         this.regularChange(key)
       }
   }
-
-  onDelete(event: any){
+  @HostListener('window:keydown', ['$event'])
+  onDelete(event: KeyboardEvent){
     const key = event.key
     if(key === 'Backspace'){
       this.deleteChange(key)
