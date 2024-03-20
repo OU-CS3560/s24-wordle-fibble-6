@@ -13,6 +13,7 @@ import { NgIf, NgFor } from '@angular/common';
   ]
 })
 export class AppComponent {
+  answer = '11+11=22';
   keyboard=[
     {key:"1",class:''},
     {key:"2",class:''},
@@ -64,12 +65,51 @@ export class AppComponent {
     }
   }
 
+
   enterChange(key:any){
     if(key == 'ENTER'){
       if(this.currentRowIndex == 8){
         this.currentRowIndex = 0;
         this.rowIndex = this.rowIndex + 1;
       }
+      this.sumbitData()
+      return
+    }
+  }
+
+  sumbitData(){
+  let clonedGuess = this.answer;
+    console.log('enter key pressed');
+    if(this.currentRowIndex===8&&this.rowIndex<9){
+      let guess = this.boxes[this.rowIndex].map((item)=>{
+        return item.key
+      }).join('')
+      console.log({guess})
+      if(this.answer===guess){
+        alert("passed")
+        return
+      }
+      //colors
+      this.boxes[this.rowIndex].map((item,index)=>{
+        if(item.key===this.answer[index]){
+          item.class = 'green';
+          clonedGuess = clonedGuess.replace(item.key,'')
+        }
+      })
+
+      this.boxes[this.rowIndex].map((item,index)=>{
+        if(clonedGuess.includes(item.key)){
+          item.class='yellow'
+        }
+      })
+
+      this.boxes[this.rowIndex].map((item)=>{
+        if(item.class===''){
+        item.class='grey'
+        }
+      })
+
+      console.log({boxes:this.boxes})
     }
   }
 }
