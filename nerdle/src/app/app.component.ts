@@ -50,7 +50,6 @@ export class AppComponent {
       console.log({key})
       this.boxes[this.rowIndex][this.currentRowIndex]={class:'',key:key};
       console.log({box:this.boxes})
-
       //move to next box after entering a key
       this.currentRowIndex = this.currentRowIndex + 1;
     }
@@ -68,11 +67,11 @@ export class AppComponent {
 
   enterChange(key:any){
     if(key == 'ENTER'){
+      this.sumbitData()
       if(this.currentRowIndex == 8){
         this.currentRowIndex = 0;
         this.rowIndex = this.rowIndex + 1;
       }
-      this.sumbitData()
       return
     }
   }
