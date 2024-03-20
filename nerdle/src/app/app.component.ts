@@ -26,9 +26,9 @@ export class AppComponent {
     {key:"0",class:''},
     {key:"+",class:''},
     {key:"-",class:''},
-    {key:"=",class:''},
     {key:"/",class:''},
     {key:"*",class:''},
+    {key:"=",class:''},
     {key:"BACKSPACE",class:''},
     {key:"ENTER",class:''}
   ]
