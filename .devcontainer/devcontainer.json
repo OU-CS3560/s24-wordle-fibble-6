@@ -1,0 +1,14 @@
+{
+    "name": "SSEP Node / Angular Development Environment",
+
+    // Image info: https://mcr.microsoft.com/en-us/product/devcontainers/typescript-node/about
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:18",
+
+    // Forward ports commonly used by apps to expose them in the port config. 
+    // Port visibility must be set as "public" to be used outside this container.
+    "forwardPorts": [
+        4200,   // Angular
+        3000,   // Node
+        9876    // Karma (Test Reporting)
+    ]
+}

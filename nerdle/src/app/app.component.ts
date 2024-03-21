@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NgIf, NgFor } from '@angular/common';
+import { Component, HostListener } from '@angular/core';
+import { NgIf, NgFor, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,8 @@ import { NgIf, NgFor } from '@angular/common';
   styleUrls: ['./app.component.scss'],
   imports: [
     NgIf,
-    NgFor
+    NgFor,
+    NgClass
   ]
 })
 export class AppComponent {
@@ -27,19 +28,19 @@ export class AppComponent {
     {key:"0",class:''},
     {key:"+",class:''},
     {key:"-",class:''},
-    {key:"=",class:''},
     {key:"/",class:''},
     {key:"*",class:''},
+    {key:"=",class:''},
     {key:"BACKSPACE",class:''},
     {key:"ENTER",class:''}
   ]
   boxes=[
-    [{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''}],
-    [{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''}],
-    [{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''}],
-    [{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''}],
-    [{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''}],
-    [{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''},{class:'',key:''}]
+    [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
+    [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
+    [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
+    [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
+    [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
+    [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}]
   ]
   rowIndex=0;
   //#iLoveCamelCase
@@ -48,7 +49,7 @@ export class AppComponent {
   regularChange(key:any){
     if(this.currentRowIndex < 8){
       console.log({key})
-      this.boxes[this.rowIndex][this.currentRowIndex]={class:'',key:key};
+      this.boxes[this.rowIndex][this.currentRowIndex]={class:'empty',key:key};
       console.log({box:this.boxes})
       //move to next box after entering a key
       this.currentRowIndex = this.currentRowIndex + 1;
@@ -56,19 +57,20 @@ export class AppComponent {
   }
   
   deleteChange(key:any){
-    if(key == 'BACKSPACE'){
+    if(key == 'Backspace'){
       if(this.currentRowIndex > 0){
         this.currentRowIndex = this.currentRowIndex - 1;
-        this.boxes[this.rowIndex][this.currentRowIndex] = {class: '', key: ''};
+        this.boxes[this.rowIndex][this.currentRowIndex] = {class: 'empty', key: ''};
       }
     }
   }
 
 
   enterChange(key:any){
-    if(key == 'ENTER'){
-      this.sumbitData()
+
+    if(key == 'Enter'){
       if(this.currentRowIndex == 8){
+        this.sumbitData();
         this.currentRowIndex = 0;
         this.rowIndex = this.rowIndex + 1;
       }
@@ -111,4 +113,66 @@ export class AppComponent {
       console.log({boxes:this.boxes})
     }
   }
+
+  @HostListener('window:keypress', ['$event'])
+  onKeyPress(event: KeyboardEvent){
+    const key = event.key
+    const validKey = this.keyboard.find(k => k.key === key);
+
+
+    console.log(event)
+      if(event.key === 'Enter'){
+        this.enterChange(event.key)
+      }
+      else if(validKey){
+        this.regularChange(key)
+      }
+  }
+  @HostListener('window:keydown', ['$event'])
+  onDelete(event: KeyboardEvent){
+    const key = event.key
+    if(key === 'Backspace'){
+      this.deleteChange(key)
+    }
+  }
+
+  answer = '11+11=22';
+
+  sumbitData(){
+    let clonedGuess = this.answer;
+      console.log('enter key pressed');
+      if(this.currentRowIndex===8&&this.rowIndex<9){
+        let guess = this.boxes[this.rowIndex].map((item)=>{
+          return item.key
+        }).join('')
+        console.log({guess})
+        if(this.answer===guess){
+          alert("passed")
+          return
+        }
+        //colors
+        this.boxes[this.rowIndex].map((item,index)=>{
+          if(item.key===this.answer[index]){
+            item.class = 'green';
+            clonedGuess = clonedGuess.replace(item.key,'')
+          }
+        })
+  
+        this.boxes[this.rowIndex].map((item,index)=>{
+          if(clonedGuess.includes(item.key)){
+            item.class='yellow'
+          }
+        })
+
+        this.boxes[this.rowIndex].map((item)=>{
+          if(item.class===''){
+          item.class='grey'
+          }
+        })
+  
+        console.log({boxes:this.boxes})
+      }
+  }
 }
+
+
