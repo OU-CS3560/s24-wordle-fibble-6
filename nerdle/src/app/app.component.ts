@@ -57,7 +57,8 @@ export class AppComponent {
   }
   
   deleteChange(key:any){
-    if(key == 'Backspace'){
+    console.log({key})
+    if(key.toUpperCase() === 'BACKSPACE'){
       if(this.currentRowIndex > 0){
         this.currentRowIndex--;
         this.boxes[this.rowIndex][this.currentRowIndex] = {class: 'empty', key: ''};
@@ -66,7 +67,7 @@ export class AppComponent {
   }
 
   enterChange(key:any){
-    if(key == 'Enter'){
+    if(key.toUpperCase() === 'ENTER'){
       if(this.currentRowIndex == 8){
         this.sumbitData();
         this.currentRowIndex = 0;
@@ -83,11 +84,11 @@ export class AppComponent {
     }
   }
 
+  //Host Listener listens to the entire window for any key clicks
   @HostListener('window:keypress', ['$event'])
   onKeyPress(event: KeyboardEvent){
     const key = event.key
     const validKey = this.keyboard.find(k => k.key === key);
-
 
     console.log(event)
       if(event.key === 'Enter'){
