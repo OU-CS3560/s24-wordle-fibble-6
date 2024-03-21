@@ -52,14 +52,14 @@ export class AppComponent {
       console.log({box:this.boxes})
 
       //move to next box after entering a key
-      this.currentRowIndex = this.currentRowIndex + 1;
+      this.currentRowIndex++;
     }
   }
   
   deleteChange(key:any){
     if(key == 'Backspace'){
       if(this.currentRowIndex > 0){
-        this.currentRowIndex = this.currentRowIndex - 1;
+        this.currentRowIndex--;
         this.boxes[this.rowIndex][this.currentRowIndex] = {class: 'empty', key: ''};
       }
     }
@@ -70,7 +70,15 @@ export class AppComponent {
       if(this.currentRowIndex == 8){
         this.sumbitData();
         this.currentRowIndex = 0;
-        this.rowIndex = this.rowIndex + 1;
+        this.rowIndex++;
+        // //insert any end game screen here
+        // let guess = this.boxes[this.rowIndex].map((item)=>{
+        //   return item.key
+        // }).join('')
+        // if(this.answer===guess){
+        //   alert("You guessed it!")
+        //   return
+        // }
       }
     }
   }
@@ -98,7 +106,6 @@ export class AppComponent {
   }
 
   answer = '11+11=22';
-
   sumbitData(){
     let clonedGuess = this.answer;
       console.log('enter key pressed');
@@ -107,31 +114,21 @@ export class AppComponent {
           return item.key
         }).join('')
         console.log({guess})
-        if(this.answer===guess){
-          alert("passed")
-          return
-        }
         //colors
         this.boxes[this.rowIndex].map((item,index)=>{
           if(item.key===this.answer[index]){
             item.class = 'green';
             clonedGuess = clonedGuess.replace(item.key,'')
-          }
-        })
-  
-        this.boxes[this.rowIndex].map((item,index)=>{
-          if(clonedGuess.includes(item.key)){
-            item.class='yellow'
+          }else if(clonedGuess.includes(item.key)){
+              item.class='yellow'
+          }else{
+            item.class='grey'
           }
         })
 
-        this.boxes[this.rowIndex].map((item)=>{
-          if(item.class===''){
-          item.class='grey'
-          }
-        })
-  
+        console.log(this.answer)
         console.log({boxes:this.boxes})
+
       }
   }
 }
