@@ -1,82 +1,35 @@
-<div class="header">
-    nerdle
-    <a class ="teamname">by yorm</a>
-</div>
+<div class="page">
 
-<div class = "main-content">
-    <div class = "boxes">
-        <ng-container *ngFor = "let item of boxes">
-            <div class = "parent-box">
-                <ng-container *ngFor="let innerItem of item">
-                    <div class ="child-box">{{innerItem.key}}</div>
+    <div class="header">
+        nerdle
+        <a class ="teamname">by yorm</a>
+    </div>
+    
+    
+    <div class = "main-content">
+        <div class = "boxes">
+            <ng-container *ngFor = "let item of boxes">
+                <div class = "parent-box">
+                    <ng-container *ngFor="let innerItem of item">
+                        <div class ="child-box">{{innerItem.key}}</div>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <div class = "keyboard">
+            <ng-container *ngFor="let item of keyboard">
+                <ng-container *ngIf="(item.key!=='ENTER')&&(item.key!=='BACKSPACE')">
+                    <Button (click)="regularChange(item.key)"> {{item.key}}</Button>
                 </ng-container>
-            </div>
-        </ng-container>
+                <ng-container *ngIf="item.key==='BACKSPACE'">
+                    <Button style="width: 92px;" (click)="deleteChange(item.key)"> {{item.key}}</Button>
+                </ng-container>
+                <ng-container *ngIf="item.key==='ENTER'">
+                    <Button style="width: 70px;" (click)="enterChange(item.key)"> {{item.key}}</Button>
+                </ng-container>
+            </ng-container>
+        </div>
     </div>
-    <div class = "keyboard">
-        <ng-container *ngFor="let item of keyboard">
-            <ng-container *ngIf="(item.key!=='ENTER')&&(item.key!=='BACKSPACE')">
-                <Button (click)="regularChange(item.key)"> {{item.key}}</Button>
-            </ng-container>
-            <ng-container *ngIf="item.key==='BACKSPACE'">
-                <Button style="width: 92px;" (click)="deleteChange(item.key)"> {{item.key}}</Button>
-            </ng-container>
-            <ng-container *ngIf="item.key==='ENTER'">
-                <Button style="width: 70px;" (click)="enterChange(item.key)"> {{item.key}}</Button>
-            </ng-container>
-        </ng-container>
-    </div>
-</div>
-<!--
-<div class = "grid-container">
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
-    <grid class = "grid-item"></grid>
 
 </div>
--->
+
