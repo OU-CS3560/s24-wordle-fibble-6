@@ -1,4 +1,6 @@
-const equations: string[] = [
+
+
+export const equations: string[] = [
     "9-1+3=11",
     "9*1+2=11",
     "6+96=102",

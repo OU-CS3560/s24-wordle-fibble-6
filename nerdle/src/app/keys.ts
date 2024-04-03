@@ -1,0 +1,19 @@
+export const keyboard = [
+        {key:"1",class:''},
+        {key:"2",class:''},
+        {key:"3",class:''},
+        {key:"4",class:''},
+        {key:"5",class:''},
+        {key:"6",class:''},
+        {key:"7",class:''},
+        {key:"8",class:''},
+        {key:"9",class:''},
+        {key:"0",class:''},
+        {key:"+",class:''},
+        {key:"-",class:''},
+        {key:"/",class:''},
+        {key:"*",class:''},
+        {key:"=",class:''},
+        {key:"BACKSPACE",class:''},
+        {key:"ENTER",class:''}  
+]
