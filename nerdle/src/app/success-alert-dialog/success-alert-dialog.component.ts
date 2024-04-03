@@ -19,6 +19,6 @@ export class SuccessAlertDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.dialogRef.close(), 1750);
+    //setTimeout(() => this.dialogRef.close(), 1750);
   }
 }

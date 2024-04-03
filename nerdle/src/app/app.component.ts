@@ -74,30 +74,32 @@ export class AppComponent {
     if(key.toUpperCase() === 'ENTER'){
       if(this.currentRowIndex == 8){
         this.sumbitData();
-        this.currentRowIndex = 0;
-        this.rowIndex++;
         //insert any end game screen here
         let guess = this.boxes[this.rowIndex].map((item)=>{
           return item.key
         }).join('')
         // for some reason guess is no longer holding correct value
-        console.log('guess',guess)
-        console.log('asnwer',this.answer)
+        console.log('guess', guess)
+        console.log('answer',this.answer)
         // if end of game
-       // if(this.answer===guess){
+        if(this.answer===guess){
         // open dialog
           this.dialog.open(SuccessAlertDialogComponent, {
             data: {
-              message: 'Succesfully guessed the answer',
-            },
+              message: 'You succesfully guessed the answer!',
+            }
+            /*,
             position: {
               top: '10px',
               right: '10px',
             },
             hasBackdrop: false,
             minWidth: '350px',
+            */
           });
-        //}
+        }
+        this.currentRowIndex = 0;
+        this.rowIndex++;
       }
       //reloads page
       //window.location.reload()
