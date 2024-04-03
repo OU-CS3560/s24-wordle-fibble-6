@@ -1,20 +1,27 @@
 .page {
-    background-color: F4F5F4;
+    background-color: var(--bkg-color);
+    height: 100%;
+    width: 100%;
 }
 
 .header {
+    display: flex;
     font-size: 60px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: #011627;
     font-weight: 300;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 20px;
+    color: var(--text-color);
+    padding: 20px;
+    justify-content: center;
+    align-content: center ;
 }
 
 .teamname {
     font-size: 20px;
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
+
 
 .grid-container {
     display: grid;
@@ -30,7 +37,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
 }
 
 .boxes{
@@ -38,13 +44,11 @@
 }
 
 .parent-box{
-
     display:flex;
     align-items: center;
     height: 72px;
     padding-bottom:8px;
 }
-
 
 .keyboard{
     width: 650px;
@@ -55,8 +59,8 @@
 .keyboard button{
     padding: 0;
     border: none;
-    background:#adadad;
-    color: #011627;
+    background:var(--key-color);
+    color: var(--text-color);
     align-items: center;
     font-family: Tahoma, Verdana, sans-serif;
     font-weight: bold;
@@ -67,13 +71,15 @@
 }
 
 .keyboard button:hover{
-    background-color: #C5BEC0;
+    background-color: #DBDBDB;
+    color: #2D151B;
 }
 
 .green{
     height: 72px;
     width: 72px;
-    background-color: #8DAB7F;
+    background-color: var(--g); //color of box
+    color: var(--bkg-color); //color of text
     margin: 3px;
    // box-sizing: border-box;
     display: flex;
@@ -83,12 +89,12 @@
     font-size: 45px;
     border-radius: 4px;
     font-family: Tahoma, Verdana, sans-serif;
-    color: #011627;
 }
 .yellow{
     height: 72px;
     width: 72px;
-    background-color: #B0DAFD;
+    background-color: var(--y); //color of box
+    color: var(--text-color); //color of text
     margin: 3px;
    // box-sizing: border-box;
     display: flex;
@@ -98,12 +104,12 @@
     font-size: 45px;
     border-radius: 4px;
     font-family: Tahoma, Verdana, sans-serif;
-    color: #011627;
 }
 .grey{
     height: 72px;
     width: 72px;
-    background-color: #C5BEC0;
+    background-color: var(--r);
+    color: var(--text-color);
     margin: 3px;
    // box-sizing: border-box;
     display: flex;
@@ -113,12 +119,13 @@
     font-size: 45px;
     border-radius: 4px;
     font-family: Tahoma, Verdana, sans-serif;
-    color: #011627;
 }
+
+//box not yet guessed in
 .empty{
     height: 72px;
     width: 72px;
-    background-color: #dbdbdb;
+    background-color: var(--box-color);
     margin: 3px;
    // box-sizing: border-box;
     display: flex;
@@ -130,3 +137,4 @@
     font-family: Tahoma, Verdana, sans-serif;
     color: #011627;
 }
+

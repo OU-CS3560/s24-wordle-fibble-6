@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { NgIf, NgFor, NgClass } from '@angular/common';
+import { MatIcon} from '@angular/material/icon'
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +10,11 @@ import { NgIf, NgFor, NgClass } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports: [
+    MatSlideToggleModule,
+    MatIcon,
     NgIf,
     NgFor,
-    NgClass
+    NgClass,
   ]
 })
 export class AppComponent {
@@ -131,6 +135,11 @@ export class AppComponent {
         console.log({boxes:this.boxes})
 
       }
+  }
+
+  //need to readd the button to make it better
+  toggleTheme(): void { //not working
+    document.body.classList.toggle('light-theme');
   }
 }
 

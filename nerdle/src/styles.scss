@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body { //dark mode is the default
+    --text-color: #DBDBDB;
+    --bkg-color: #011627;
+    --box-color: #DBDBDB;
+    --key-color: #304556;
+    --r: #304556;
+    --y: #376E70;
+    --g: rgb(20, 211, 195);
+  }
+  body.light-mode { //light mode 
+    --text-color: #eee;
+    --bkg-color: #121212;
+  }
