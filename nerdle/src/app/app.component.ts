@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { NgIf, NgFor, NgClass } from '@angular/common';
 import { SuccessAlertDialogComponent } from './success-alert-dialog/success-alert-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
   imports: [
     NgIf,
     NgFor,
-    NgClass
+    NgClass, 
+    MatDialogModule
   ]
 })
 export class AppComponent {
@@ -87,15 +88,13 @@ export class AppComponent {
           this.dialog.open(SuccessAlertDialogComponent, {
             data: {
               message: 'You succesfully guessed the answer!',
-            }
-            /*,
+            },
             position: {
               top: '10px',
               right: '10px',
             },
             hasBackdrop: false,
             minWidth: '350px',
-            */
           });
         }
         this.currentRowIndex = 0;
