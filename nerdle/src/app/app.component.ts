@@ -1,5 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { NgIf, NgFor, NgClass } from '@angular/common';
+import { SuccessAlertDialogComponent } from './success-alert-dialog/success-alert-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +46,9 @@ export class AppComponent {
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
-  
+  constructor(
+    private dialog: MatDialog,
+  ){}
   regularChange(key:any){
     if(this.currentRowIndex < 8){
       console.log({key})
@@ -72,15 +76,31 @@ export class AppComponent {
         this.sumbitData();
         this.currentRowIndex = 0;
         this.rowIndex++;
-        // //insert any end game screen here
-        // let guess = this.boxes[this.rowIndex].map((item)=>{
-        //   return item.key
-        // }).join('')
-        // if(this.answer===guess){
-        //   alert("You guessed it!")
-        //   return
-        // }
+        //insert any end game screen here
+        let guess = this.boxes[this.rowIndex].map((item)=>{
+          return item.key
+        }).join('')
+        // for some reason guess is no longer holding correct value
+        console.log('guess',guess)
+        console.log('asnwer',this.answer)
+        // if end of game
+       // if(this.answer===guess){
+        // open dialog
+          this.dialog.open(SuccessAlertDialogComponent, {
+            data: {
+              message: 'Succesfully guessed the answer',
+            },
+            position: {
+              top: '10px',
+              right: '10px',
+            },
+            hasBackdrop: false,
+            minWidth: '350px',
+          });
+        //}
       }
+      //reloads page
+      //window.location.reload()
     }
   }
 
@@ -133,5 +153,3 @@ export class AppComponent {
       }
   }
 }
-
-
