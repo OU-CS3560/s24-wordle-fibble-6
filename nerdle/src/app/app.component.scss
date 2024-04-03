@@ -45,21 +45,21 @@
     padding-bottom:8px;
 }
 
-.child-box{
-    height: 72px;
-    width: 72px;
-    background-color: skyblue;
-    margin: 3px;
-   // box-sizing: border-box;
-    display: flex;
+// .child-box{
+//     height: 72px;
+//     width: 72px;
+//     background-color: black;
+//     margin: 3px;
+//    // box-sizing: border-box;
+//     display: flex;
 
-    align-items: center;
-    justify-content: center;
-    font-size: 45px;
-    border-radius: 4px;
-    font-family: Tahoma, Verdana, sans-serif;
-    color: #011627;
-}
+//     align-items: center;
+//     justify-content: center;
+//     font-size: 45px;
+//     border-radius: 4px;
+//     font-family: Tahoma, Verdana, sans-serif;
+//     color: #011627;
+// }
 
 .keyboard{
     width: 650px;
@@ -70,7 +70,7 @@
 .keyboard button{
     padding: 0;
     border: none;
-    background:#D6D6D6;
+    background:#adadad;
     color: #011627;
     align-items: center;
     font-family: Tahoma, Verdana, sans-serif;
@@ -82,5 +82,66 @@
 }
 
 .keyboard button:hover{
-    background-color: skyblue;
+    background-color: #C5BEC0;
+}
+
+.green{
+    height: 72px;
+    width: 72px;
+    background-color: #8DAB7F;
+    margin: 3px;
+   // box-sizing: border-box;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    border-radius: 4px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #011627;
+}
+.yellow{
+    height: 72px;
+    width: 72px;
+    background-color: #B0DAFD;
+    margin: 3px;
+   // box-sizing: border-box;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    border-radius: 4px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #011627;
+}
+.grey{
+    height: 72px;
+    width: 72px;
+    background-color: #C5BEC0;
+    margin: 3px;
+   // box-sizing: border-box;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    border-radius: 4px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #011627;
+}
+.empty{
+    height: 72px;
+    width: 72px;
+    background-color: #dbdbdb;
+    margin: 3px;
+   // box-sizing: border-box;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    border-radius: 4px;
+    font-family: Tahoma, Verdana, sans-serif;
+    color: #011627;
 }

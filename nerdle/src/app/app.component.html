@@ -11,7 +11,7 @@
             <ng-container *ngFor = "let item of boxes">
                 <div class = "parent-box">
                     <ng-container *ngFor="let innerItem of item">
-                        <div class ="child-box">{{innerItem.key}}</div>
+                        <div [ngClass] ="innerItem.class">{{innerItem.key}}</div>
                     </ng-container>
                 </div>
             </ng-container>
