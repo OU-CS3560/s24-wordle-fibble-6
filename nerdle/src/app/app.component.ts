@@ -1,7 +1,11 @@
 import { Component, HostListener } from '@angular/core';
 import { NgIf, NgFor, NgClass } from '@angular/common';
+import { MatIcon} from '@angular/material/icon'
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { equations } from './equations';
 import { SuccessAlertDialogComponent } from './success-alert-dialog/success-alert-dialog.component';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-root',
@@ -10,6 +14,8 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   imports: [
+    MatSlideToggleModule,
+    MatIcon,
     NgIf,
     NgFor,
     NgClass, 
@@ -44,6 +50,19 @@ export class AppComponent {
     [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
     [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}]
   ]
+
+  answer: string
+
+  constructor(){
+
+    //creating the new equation
+    const randomIndex = Math.floor(Math.random() * equations.length)
+    this.answer = equations[randomIndex]
+    console.log('Answer: ', this.answer)
+
+  }
+
+
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
@@ -127,7 +146,8 @@ export class AppComponent {
     }
   }
 
-  answer = '11+11=22';
+
+
   sumbitData(){
     let clonedGuess = this.answer;
       console.log('enter key pressed');
@@ -152,5 +172,11 @@ export class AppComponent {
         console.log({boxes:this.boxes})
 
       }
+
+
+        //need to readd the button to make it better
+  // toggleTheme(): void { //not working
+  //   document .body.classList.toggle('light-theme');
+  // }
   }
 }
