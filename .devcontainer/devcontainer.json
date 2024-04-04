@@ -1,5 +1,5 @@
 {
-    "name": "SSEP Node / Angular Development Environment",
+    "name": "Node / Angular Development Environment",
 
     // Image info: https://mcr.microsoft.com/en-us/product/devcontainers/typescript-node/about
     "image": "mcr.microsoft.com/devcontainers/typescript-node:18",
