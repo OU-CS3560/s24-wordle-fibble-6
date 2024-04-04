@@ -3,6 +3,9 @@ import { NgIf, NgFor, NgClass } from '@angular/common';
 import { MatIcon} from '@angular/material/icon'
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { equations } from './equations';
+import { SuccessAlertDialogComponent } from './success-alert-dialog/success-alert-dialog.component';
+import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-root',
@@ -15,7 +18,8 @@ import { equations } from './equations';
     MatIcon,
     NgIf,
     NgFor,
-    NgClass,
+    NgClass, 
+    MatDialogModule
   ]
 })
 export class AppComponent {
@@ -62,7 +66,9 @@ export class AppComponent {
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
-  
+  constructor(
+    private dialog: MatDialog,
+  ){}
   regularChange(key:any){
     if(this.currentRowIndex < 8){
       console.log({key})
@@ -88,17 +94,33 @@ export class AppComponent {
     if(key.toUpperCase() === 'ENTER'){
       if(this.currentRowIndex == 8){
         this.sumbitData();
+        //insert any end game screen here
+        let guess = this.boxes[this.rowIndex].map((item)=>{
+          return item.key
+        }).join('')
+        // for some reason guess is no longer holding correct value
+        console.log('guess', guess)
+        console.log('answer',this.answer)
+        // if end of game
+        if(this.answer===guess){
+        // open dialog
+          this.dialog.open(SuccessAlertDialogComponent, {
+            data: {
+              message: 'You succesfully guessed the answer!',
+            },
+            position: {
+              top: '10px',
+              right: '10px',
+            },
+            hasBackdrop: false,
+            minWidth: '350px',
+          });
+        }
         this.currentRowIndex = 0;
         this.rowIndex++;
-        // //insert any end game screen here
-        // let guess = this.boxes[this.rowIndex].map((item)=>{
-        //   return item.key
-        // }).join('')
-        // if(this.answer===guess){
-        //   alert("You guessed it!")
-        //   return
-        // }
       }
+      //reloads page
+      //window.location.reload()
     }
   }
 
@@ -156,6 +178,5 @@ export class AppComponent {
   // toggleTheme(): void { //not working
   //   document .body.classList.toggle('light-theme');
   // }
-
   }
 }
