@@ -53,22 +53,18 @@ export class AppComponent {
 
   answer: string
 
-  constructor(){
-
+  constructor(private dialog: MatDialog,){
     //creating the new equation
     const randomIndex = Math.floor(Math.random() * equations.length)
     this.answer = equations[randomIndex]
     console.log('Answer: ', this.answer)
-
   }
 
 
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
-  constructor(
-    private dialog: MatDialog,
-  ){}
+
   regularChange(key:any){
     if(this.currentRowIndex < 8){
       console.log({key})
