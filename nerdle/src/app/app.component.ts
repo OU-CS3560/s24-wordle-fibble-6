@@ -105,8 +105,7 @@ export class AppComponent {
               message: 'You succesfully guessed the answer!',
             },
             position: {
-              top: '10px',
-              right: '10px',
+              
             },
             hasBackdrop: false,
             minWidth: '350px',
