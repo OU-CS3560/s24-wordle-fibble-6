@@ -10,16 +10,22 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 300;
     color: var(--text-color);
-    padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
     justify-content: center;
-    align-content: center ;
+    align-content: center;
 }
 
 .teamname {
     font-size: 20px;
-    padding-top: 40px;
+    padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
+}
+
+.title{
+    align-self: center;
+    padding-bottom: 30px;
 }
 
 
@@ -71,14 +77,44 @@
 }
 
 .keyboard button:hover{
-    background-color: #DBDBDB;
-    color: #2D151B;
+    background-color: var(--text-color);
+    color: var(--bkg-color);
+}
+
+button[mat-icon-button]{
+    $large-size-button: 80px;
+    $large-size-icon: 48px;
+
+    &.icon-button-large {
+        width: $large-size-button;
+        height: $large-size-button;
+        line-height: $large-size-button;
+      .mat-icon {
+        font-size: $large-size-icon;
+        width: $large-size-icon;
+        height: $large-size-icon;
+        line-height: $large-size-icon;
+      }
+      .mat-button-ripple {
+        font-size: inherit;
+        width: inherit;
+        height: inherit;
+        line-height: inherit;
+      }
+    }
+
+    position: flex;
+}
+
+.theme button:hover{
+    //background-color: var(--key-color);
+    color: var(--sun);
 }
 
 .green{
     height: 72px;
     width: 72px;
-    background-color: lightgreen; //color of box
+    background-color: var(--g); //color of box
     color: var(--bkg-color); //color of text
     margin: 3px;
    // box-sizing: border-box;
@@ -93,7 +129,7 @@
 .yellow{
     height: 72px;
     width: 72px;
-    background-color: #fdfd96; //color of box
+    background-color: var(--y) ; //color of box
     color: var(--bkg-color); //color of text
     margin: 3px;
    // box-sizing: border-box;
@@ -137,4 +173,3 @@
     font-family: Tahoma, Verdana, sans-serif;
     color: #011627;
 }
-

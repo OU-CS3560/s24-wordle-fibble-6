@@ -5,6 +5,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { equations } from './equations';
 import { SuccessAlertDialogComponent } from './success-alert-dialog/success-alert-dialog.component';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
     NgIf,
     NgFor,
     NgClass, 
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule
   ]
 })
 export class AppComponent {
@@ -167,11 +169,9 @@ export class AppComponent {
         console.log({boxes:this.boxes})
 
       }
+  }
 
-
-        //need to readd the button to make it better
-  // toggleTheme(): void { //not working
-  //   document .body.classList.toggle('light-theme');
-  // }
+  toggleTheme(){
+    document.body.classList.toggle('light-theme');
   }
 }

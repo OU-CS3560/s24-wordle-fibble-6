@@ -9,10 +9,18 @@ body { //dark mode is the default
     --box-color: #DBDBDB;
     --key-color: #304556;
     --r: #304556;
-    --y: #376E70;
-    --g: rgb(20, 211, 195);
+    --y: #fdfd96;
+    --g: lightgreen;
+    --sun: #ffff00;
   }
-  body.light-mode { //light mode 
-    --text-color: #eee;
-    --bkg-color: #121212;
+
+.light-theme { //light mode 
+    --text-color: #011627;
+    --bkg-color: #edeced;
+    --box-color: #DBDBDB;
+    --key-color: #c1bec1;
+    --r: #c1bec1;
+    --y: #f89880;
+    --g: #008631;
+    --sun: #9146ff;
   }
