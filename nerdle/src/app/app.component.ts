@@ -5,6 +5,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { equations } from './equations';
 import { SuccessAlertDialogComponent } from './success-alert-dialog/success-alert-dialog.component';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
+import { KermitComponent } from './kermit-component/kermit-component.component';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { MatDialogModule, MatDialog } from '@angular/material/dialog';
     NgIf,
     NgFor,
     NgClass, 
-    MatDialogModule
+    MatDialogModule,
+    KermitComponent
   ]
 })
 export class AppComponent {
@@ -94,7 +96,7 @@ export class AppComponent {
         let guess = this.boxes[this.rowIndex].map((item)=>{
           return item.key
         }).join('')
-        // for some reason guess is no longer holding correct value
+        //these console logs only for convenience. should get rid of before full deploy
         console.log('guess', guess)
         console.log('answer',this.answer)
         // if end of game
@@ -180,7 +182,7 @@ export class AppComponent {
         });
 
        
-
+        //remove at least the answer log before full deploy
         console.log(this.answer)
         console.log({boxes:this.boxes})
 

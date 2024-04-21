@@ -2,6 +2,8 @@
     background-color: var(--bkg-color);
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .header {
@@ -48,6 +50,10 @@
     align-items: center;
     height: 72px;
     padding-bottom:8px;
+}
+
+.left-side{
+    width: 25%;
 }
 
 .keyboard{
