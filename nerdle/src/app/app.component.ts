@@ -148,22 +148,40 @@ export class AppComponent {
   sumbitData(){
     let clonedGuess = this.answer;
       console.log('enter key pressed');
+      //check to make sure all the boxes are filled to submit
       if(this.currentRowIndex===8&&this.rowIndex<9){
         let guess = this.boxes[this.rowIndex].map((item)=>{
           return item.key
         }).join('')
         console.log({guess})
-        //colors
-        this.boxes[this.rowIndex].map((item,index)=>{
-          if(item.key===this.answer[index]){
+
+        //logic for assigning a color to a box
+        const correctBoxes: number[] = [];
+
+        //mark all boxes as green if they are exactly right; all else grey
+        this.boxes[this.rowIndex].forEach((item, index) =>{
+          if(item.key === this.answer[index]){
             item.class = 'green';
-            clonedGuess = clonedGuess.replace(item.key,'')
-          }else if(clonedGuess.includes(item.key)){
-              item.class='yellow'
-          }else{
-            item.class='grey'
+            clonedGuess = clonedGuess.replace(item.key,'');
+            correctBoxes.push(index);
+          } else{
+            item.class='grey';
           }
-        })
+        });
+
+        //mark boxes that are grey after last function, but that contain a correct letter as yellow
+        this.boxes[this.rowIndex].forEach((item, index) =>{
+          if(
+            item.class === 'grey' &&
+            clonedGuess.includes(item.key) &&
+            !(correctBoxes.includes(index))
+          ){
+            item.class = 'yellow';
+            clonedGuess = clonedGuess.replace(item.key,'');
+          }
+        });
+
+       
 
         console.log(this.answer)
         console.log({boxes:this.boxes})
