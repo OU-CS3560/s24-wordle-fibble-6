@@ -55,13 +55,15 @@ export class AppComponent {
     [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}]
   ]
 
-  answer: string
+  answer: string;
+  isGameOver: boolean;
 
   constructor(private dialog: MatDialog,){
     //creating the new equation
     const randomIndex = Math.floor(Math.random() * equations.length)
     this.answer = equations[randomIndex]
-    console.log('Answer: ', this.answer)
+    console.log('Answer: ', this.answer),
+    this.isGameOver = false
   }
 
 
@@ -70,7 +72,7 @@ export class AppComponent {
   currentRowIndex=0;
 
   regularChange(key:any){
-    if(this.currentRowIndex < 8){
+    if(this.currentRowIndex < 8 && !this.isGameOver){
       console.log({key})
       this.boxes[this.rowIndex][this.currentRowIndex]={class:'empty',key:key};
       console.log({box:this.boxes})
@@ -83,7 +85,7 @@ export class AppComponent {
   deleteChange(key:any){
     console.log({key})
     if(key.toUpperCase() === 'BACKSPACE'){
-      if(this.currentRowIndex > 0){
+      if(this.currentRowIndex > 0 && !this.isGameOver){
         this.currentRowIndex--;
         this.boxes[this.rowIndex][this.currentRowIndex] = {class: 'empty', key: ''};
       }
@@ -103,6 +105,8 @@ export class AppComponent {
         console.log('answer',this.answer)
         // if end of game
         if(this.answer===guess){
+          //stop ability to keep making guesses
+          this.isGameOver = true;
         // open dialog
           this.dialog.open(SuccessAlertDialogComponent, {
             data: {
@@ -126,16 +130,18 @@ export class AppComponent {
   //Host Listener listens to the entire window for any key clicks
   @HostListener('window:keypress', ['$event'])
   onKeyPress(event: KeyboardEvent){
-    const key = event.key
-    const validKey = this.keyboard.find(k => k.key === key);
+    if(!this.isGameOver){
+      const key = event.key
+      const validKey = this.keyboard.find(k => k.key === key);
 
-    console.log(event)
+      console.log(event)
       if(event.key === 'Enter'){
         this.enterChange(event.key)
       }
       else if(validKey){
         this.regularChange(key)
       }
+    }
   }
   @HostListener('window:keydown', ['$event'])
   onDelete(event: KeyboardEvent){
@@ -183,7 +189,6 @@ export class AppComponent {
           }
         });
 
-       
         //remove at least the answer log before full deploy
         console.log(this.answer)
         console.log({boxes:this.boxes})
