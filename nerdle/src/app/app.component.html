@@ -1,41 +1,44 @@
 <div class="page">
-
-    <div class="header">
-        <div class="title">
-            nerdle
-        </div>
-        <a class ="teamname">by yorm</a>
-        <div class="theme">
-            <button class="icon-button-large" mat-icon-button (click) = "toggleTheme()"><mat-icon>wb_sunny</mat-icon></button>
-        </div>
+    <div class = "left-side">
+        <app-kermit-component></app-kermit-component>
     </div>
+    <div class="middle-content">
+        <div class="header">
+            <div class="title">
+                nerdle
+            </div>
+            <a class ="teamname">by yorm</a>
+            <div class="theme">
+                <mat-slide-toggle ></mat-slide-toggle>
+            </div>
+        </div>
+        
+        <div class = "main-content">
+            <div class = "boxes">
+                <ng-container *ngFor = "let item of boxes">
+                    <div class = "parent-box">
+                        <ng-container *ngFor="let innerItem of item">
+                            <div [ngClass] ="innerItem.class">{{innerItem.key}}</div>
+                        </ng-container>
+                    </div>
+                </ng-container>
+            </div>
     
-    <div class = "main-content">
-        <div class = "boxes">
-            <ng-container *ngFor = "let item of boxes">
-                <div class = "parent-box">
-                    <ng-container *ngFor="let innerItem of item">
-                        <div [ngClass] ="innerItem.class">{{innerItem.key}}</div>
+            <div class = "keyboard">
+                <ng-container *ngFor="let item of keyboard">
+                    <ng-container *ngIf="(item.key!=='ENTER')&&(item.key!=='BACKSPACE')">
+                        <Button mat-raised-button (click)="regularChange(item.key)"> {{item.key}}</Button>
                     </ng-container>
-                </div>
-            </ng-container>
-        </div>
-
-
-        <div class = "keyboard">
-            <ng-container *ngFor="let item of keyboard">
-                <ng-container *ngIf="(item.key!=='ENTER')&&(item.key!=='BACKSPACE')">
-                    <Button mat-raised-button (click)="regularChange(item.key)"> {{item.key}}</Button>
+                    <ng-container *ngIf="item.key==='BACKSPACE'">
+                        <Button mat-raised-button (click)="deleteChange(item.key)"> <mat-icon>backspace</mat-icon></Button>
+                    </ng-container>
+                    <ng-container *ngIf="item.key==='ENTER'">
+                        <Button mat-raised-button (click)="enterChange(item.key)"> <mat-icon>keyboard_return</mat-icon></Button>
+                    </ng-container>
                 </ng-container>
-                <ng-container *ngIf="item.key==='BACKSPACE'">
-                    <Button mat-raised-button (click)="deleteChange(item.key)"> <mat-icon>backspace</mat-icon></Button>
-                </ng-container>
-                <ng-container *ngIf="item.key==='ENTER'">
-                    <Button mat-raised-button (click)="enterChange(item.key)"> <mat-icon>keyboard_return</mat-icon></Button>
-                </ng-container>
-            </ng-container>
+            </div>
         </div>
     </div>
-
+    <div class = "right-side"></div>
 </div>
 
