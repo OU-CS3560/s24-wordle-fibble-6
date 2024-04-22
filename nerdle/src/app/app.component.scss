@@ -182,3 +182,15 @@ button[mat-icon-button]{
     font-family: Tahoma, Verdana, sans-serif;
     color: #011627;
 }
+
+.keyboard button.key-green {
+    background-color: var(--g) !important;
+    color: var(--bkg-color);
+}
+
+.keyboard button.key-yellow {
+    background-color: var(--y) !important; 
+    color: var(--bkg-color);
+}
+
+

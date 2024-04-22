@@ -154,46 +154,39 @@ export class AppComponent {
 
 
   sumbitData(){
-    let clonedGuess = this.answer;
-      console.log('enter key pressed');
-      //check to make sure all the boxes are filled to submit
-      if(this.currentRowIndex===8&&this.rowIndex<9){
-        let guess = this.boxes[this.rowIndex].map((item)=>{
-          return item.key
-        }).join('')
-        console.log({guess})
-
-        //logic for assigning a color to a box
-        const correctBoxes: number[] = [];
-
-        //mark all boxes as green if they are exactly right; all else grey
-        this.boxes[this.rowIndex].forEach((item, index) =>{
-          if(item.key === this.answer[index]){
-            item.class = 'green';
-            clonedGuess = clonedGuess.replace(item.key,'');
-            correctBoxes.push(index);
-          } else{
-            item.class='grey';
-          }
-        });
-
-        //mark boxes that are grey after last function, but that contain a correct letter as yellow
-        this.boxes[this.rowIndex].forEach((item, index) =>{
-          if(
-            item.class === 'grey' &&
-            clonedGuess.includes(item.key) &&
-            !(correctBoxes.includes(index))
-          ){
-            item.class = 'yellow';
-            clonedGuess = clonedGuess.replace(item.key,'');
-          }
-        });
-
-        //remove at least the answer log before full deploy
-        console.log(this.answer)
-        console.log({boxes:this.boxes})
-
+      const answerLetterCount: Record<string, number> = {};
+      for (const letter of this.answer) {
+        if (!answerLetterCount[letter]) {
+          answerLetterCount[letter] = 0;
+        }
+        answerLetterCount[letter]++;
       }
+
+      // First pass -> greens (for tiles and keys)
+      this.boxes[this.rowIndex].forEach((item, index) => {
+        if (item.key === this.answer[index]) {
+          item.class = 'green'; // for tiles
+          answerLetterCount[item.key]--;
+          const keyboardKey = this.keyboard.find(k => k.key === item.key);
+          if (keyboardKey) {
+            keyboardKey.class = 'key-green'; // for keyboard keys
+          }
+        }
+      });
+    
+      // Second pass -> yellows and greys (for tiles and keys)
+      this.boxes[this.rowIndex].forEach((item, index) => {
+        if (item.class !== 'green') {
+          const keyboardKey = this.keyboard.find(k => k.key === item.key);
+          if (answerLetterCount[item.key] && answerLetterCount[item.key] > 0) {
+            item.class = 'yellow'; // for tiles
+            answerLetterCount[item.key]--;
+            if (keyboardKey && keyboardKey.class !== 'key-green') {
+              keyboardKey.class = 'key-yellow'; // for keyboard keys
+            }
+          } 
+        }
+      });
   }
 
   toggleTheme(){

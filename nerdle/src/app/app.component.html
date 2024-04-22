@@ -25,17 +25,27 @@
     
             <div class = "keyboard">
                 <ng-container *ngFor="let item of keyboard">
-                    <ng-container *ngIf="(item.key!=='ENTER')&&(item.key!=='BACKSPACE')">
-                        <Button mat-raised-button (click)="regularChange(item.key)"> {{item.key}}</Button>
+                    <!-- Handle non-special keys -->
+                    <ng-container *ngIf="item.key !== 'ENTER' && item.key !== 'BACKSPACE'">
+                        <button mat-raised-button [ngClass]="item.class" (click)="regularChange(item.key)">
+                            {{item.key}}
+                        </button>
                     </ng-container>
-                    <ng-container *ngIf="item.key==='BACKSPACE'">
-                        <Button mat-raised-button (click)="deleteChange(item.key)"> <mat-icon>backspace</mat-icon></Button>
+                    <!-- Handle BACKSPACE -->
+                    <ng-container *ngIf="item.key === 'BACKSPACE'">
+                        <button mat-rai ssed-button [ngClass]="item.class" (click)="deleteChange(item.key)">
+                            <mat-icon>backspace</mat-icon>
+                        </button>
                     </ng-container>
-                    <ng-container *ngIf="item.key==='ENTER'">
-                        <Button mat-raised-button (click)="enterChange(item.key)"> <mat-icon>keyboard_return</mat-icon></Button>
+                    <!-- Handle ENTER -->
+                    <ng-container *ngIf="item.key === 'ENTER'">
+                        <button mat-raised-button [ngClass]="item.class" (click)="enterChange(item.key)">
+                            <mat-icon>keyboard_return</mat-icon>
+                        </button>
                     </ng-container>
                 </ng-container>
             </div>
+            
         </div>
     </div>
     <div class = "right-side">
