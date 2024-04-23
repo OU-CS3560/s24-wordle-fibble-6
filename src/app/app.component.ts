@@ -27,6 +27,11 @@ import {MatButtonModule} from '@angular/material/button';
   ]
 })
 export class AppComponent {
+  /**
+   * @brief this array holds all possible key values that
+   * can be obtained from the user
+   * @memberof AppComponent
+   */
   keyboard=[
     {key:"1",class:''},
     {key:"2",class:''},
@@ -46,6 +51,12 @@ export class AppComponent {
     {key:"BACKSPACE",class:''},
     {key:"ENTER",class:''}
   ]
+  /**
+   * @brief this array holds the color class and key value of each
+   * individual box in the 6x8 "board"
+   *
+   * @memberof AppComponent
+   */
   boxes=[
     [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
     [{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''},{class:'empty',key:''}],
