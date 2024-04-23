@@ -14,4 +14,3 @@ import { MatDialogModule } from '@angular/material/dialog';
 })
 
 export class AppModule { }
-//platformBrowser().bootstrapModule(AppModule);

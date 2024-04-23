@@ -122,8 +122,6 @@ export class AppComponent {
         this.currentRowIndex = 0;
         this.rowIndex++;
       }
-      //reloads page
-      //window.location.reload()
     }
   }
 
