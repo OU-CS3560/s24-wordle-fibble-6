@@ -81,7 +81,11 @@ export class AppComponent {
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
-
+  /**
+   * @brief handles the case when a number or character (not enter or delete) is input into one of the boxes.
+   * Checks that the box is valid and empty and that the game is not over before recording the value of the key in the box.
+   * @param key A key representing either a number or math symbol
+   */
   regularChange(key:any){
     if(this.currentRowIndex < 8 && !this.isGameOver){
       console.log({key})
@@ -92,7 +96,11 @@ export class AppComponent {
       this.currentRowIndex++;
     }
   }
-  
+  /**
+   * @brief Checks if the key is a backspace key, and deletes the last entered character in the boxes.
+   * Makes sure the array will not go out of bounds, decrements currentRowIndex, and sets the key to empty.
+   * @param key A key representing the backspace operation
+   */
   deleteChange(key:any){
     console.log({key})
     if(key.toUpperCase() === 'BACKSPACE'){
