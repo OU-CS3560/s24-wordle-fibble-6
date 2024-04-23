@@ -4,10 +4,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     BrowserModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: []

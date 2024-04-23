@@ -226,6 +226,7 @@ export class AppComponent {
 
   /**
    * @brief - toggles the class between light and dark mode, declared in the styles.scss file
+   * dark mode is default theme
    */
   toggleTheme(){
     document.body.classList.toggle('light-theme');

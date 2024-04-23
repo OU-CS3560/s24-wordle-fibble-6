@@ -10,7 +10,7 @@ describe('SuccessAlertDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SuccessAlertDialogComponent],
+      declarations: [],
       imports: [MatIconModule],
       providers: [
         {
