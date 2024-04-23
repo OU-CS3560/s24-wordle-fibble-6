@@ -162,29 +162,30 @@ export class AppComponent {
         answerLetterCount[letter]++;
       }
 
-      // First pass -> greens (for tiles and keys)
       this.boxes[this.rowIndex].forEach((item, index) => {
+        const keyboardKey = this.keyboard.find(k => k.key === item.key);
+        //green
         if (item.key === this.answer[index]) {
           item.class = 'green'; // for tiles
           answerLetterCount[item.key]--;
-          const keyboardKey = this.keyboard.find(k => k.key === item.key);
           if (keyboardKey) {
             keyboardKey.class = 'key-green'; // for keyboard keys
           }
         }
-      });
-    
-      // Second pass -> yellows and greys (for tiles and keys)
-      this.boxes[this.rowIndex].forEach((item, index) => {
-        if (item.class !== 'green') {
-          const keyboardKey = this.keyboard.find(k => k.key === item.key);
-          if (answerLetterCount[item.key] && answerLetterCount[item.key] > 0) {
-            item.class = 'yellow'; // for tiles
-            answerLetterCount[item.key]--;
-            if (keyboardKey && keyboardKey.class !== 'key-green') {
-              keyboardKey.class = 'key-yellow'; // for keyboard keys
-            }
-          } 
+        //yellow
+        else if(answerLetterCount[item.key] && answerLetterCount[item.key] > 0){
+          item.class = 'yellow'; // for tiles
+          answerLetterCount[item.key]--;
+          if (keyboardKey && keyboardKey.class !== 'key-green') {
+            keyboardKey.class = 'key-yellow'; // for keyboard keys
+          }
+        }
+        //grey
+        else{
+          if(keyboardKey){
+            item.class = 'grey';
+            keyboardKey.class = "key-grey";
+          }
         }
       });
   }
