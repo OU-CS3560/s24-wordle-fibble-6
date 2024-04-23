@@ -111,6 +111,10 @@ export class AppComponent {
     }
   }
 
+  /**
+   * @brief - places the cursor on the next line of the grid
+   * @param key - a chosen key from the keyboard
+   */
   enterChange(key:any){
     if(key.toUpperCase() === 'ENTER'){
       if(this.currentRowIndex == 8){
@@ -144,7 +148,14 @@ export class AppComponent {
     }
   }
 
-  //Host Listener listens to the entire window for any key clicks
+  /**
+   * @brief Listens to keyEvents to detect for certain keystrokes made by the user
+   * 
+   * @param event - a keyboard event made by the user
+   * 
+   * @see enterChange
+   * @see regularChange
+   */
   @HostListener('window:keypress', ['$event'])
   onKeyPress(event: KeyboardEvent){
     if(!this.isGameOver){
@@ -160,6 +171,11 @@ export class AppComponent {
       }
     }
   }
+  /**
+   * @brief -listens for delete keyboard stroke
+   * @param event - keyboard event of type delete
+   * @see deleteChange
+   */
   @HostListener('window:keydown', ['$event'])
   onDelete(event: KeyboardEvent){
     const key = event.key
@@ -168,8 +184,9 @@ export class AppComponent {
     }
   }
 
-
-
+  /**
+   * @brief - the keystrokes made and planted into the grid it submitted to be checked if it is the correct guess
+   */
   sumbitData(){
       const answerLetterCount: Record<string, number> = {};
       for (const letter of this.answer) {
@@ -207,6 +224,9 @@ export class AppComponent {
       });
   }
 
+  /**
+   * @brief - toggles the class between light and dark mode, declared in the styles.scss file
+   */
   toggleTheme(){
     document.body.classList.toggle('light-theme');
   }
