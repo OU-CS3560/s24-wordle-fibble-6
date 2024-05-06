@@ -7,6 +7,8 @@ import { SuccessAlertDialogComponent } from './success-alert-dialog/success-aler
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { KermitComponent } from './kermit-component/kermit-component.component';
 import {MatButtonModule} from '@angular/material/button';
+import { Observable } from 'rxjs';
+//import { isNumeric } from 'rxjs/util/isNumeric';
 
 
 @Component({
@@ -118,6 +120,11 @@ export class AppComponent {
   enterChange(key:any){
     if(key.toUpperCase() === 'ENTER'){
       if(this.currentRowIndex == 8){
+        //check if guess is valid equation
+        if(isNaN(Number(+this.boxes[this.rowIndex][0].key)) || isNaN(Number(+this.boxes[this.rowIndex][7].key))){
+
+        }else{
+
         this.sumbitData();
         //insert any end game screen here
         let guess = this.boxes[this.rowIndex].map((item)=>{
@@ -145,6 +152,8 @@ export class AppComponent {
         this.currentRowIndex = 0;
         this.rowIndex++;
       }
+      
+    }
     }
   }
 
@@ -188,6 +197,7 @@ export class AppComponent {
    * @brief - the keystrokes made and planted into the grid it submitted to be checked if it is the correct guess
    */
   sumbitData(){
+
       const answerLetterCount: Record<string, number> = {};
       for (const letter of this.answer) {
         if (!answerLetterCount[letter]) {
@@ -195,7 +205,7 @@ export class AppComponent {
         }
         answerLetterCount[letter]++;
       }
-
+      //check if valid equation
       this.boxes[this.rowIndex].forEach((item, index) => {
         const keyboardKey = this.keyboard.find(k => k.key === item.key);
         //green
