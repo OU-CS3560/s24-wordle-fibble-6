@@ -7,8 +7,6 @@ import { SuccessAlertDialogComponent } from './success-alert-dialog/success-aler
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { KermitComponent } from './kermit-component/kermit-component.component';
 import {MatButtonModule} from '@angular/material/button';
-import { Observable } from 'rxjs';
-//import { isNumeric } from 'rxjs/util/isNumeric';
 
 
 @Component({
@@ -121,9 +119,7 @@ export class AppComponent {
     if(key.toUpperCase() === 'ENTER'){
       if(this.currentRowIndex == 8){
         //check if guess is valid equation
-        if(isNaN(Number(+this.boxes[this.rowIndex][0].key)) || isNaN(Number(+this.boxes[this.rowIndex][7].key))){
-
-        }else{
+        if(this.isEquation()){
 
         this.sumbitData();
         //insert any end game screen here
@@ -140,6 +136,7 @@ export class AppComponent {
         // open dialog
           this.dialog.open(SuccessAlertDialogComponent, {
             data: {
+              title: 'Success',
               message: 'You succesfully guessed the answer!',
             },
             position: {
@@ -151,10 +148,12 @@ export class AppComponent {
         }
         this.currentRowIndex = 0;
         this.rowIndex++;
+      }else{
+        //this is where a incorrect dialog would go
       }
-      
     }
     }
+    
   }
 
   /**
@@ -192,7 +191,136 @@ export class AppComponent {
       this.deleteChange(key)
     }
   }
-
+  isEquation(): boolean{
+    const numbers: string[] = ["0","1","2","3","4","5","6","7","8","9"];
+    const symbols: string[] = ["+","-","/","*","="];
+    var index = 1;
+    //integers
+    var num_count = 3;
+    var num1;
+    var num2;
+    var num3;
+    var num4;
+    //strings
+    var symbol_count = 2;
+    var symbol1;
+    var symbol2;
+    var symbol3;
+    //checks first and last
+    if(isNaN(Number(+this.boxes[this.rowIndex][0].key)) || isNaN(Number(+this.boxes[this.rowIndex][7].key))){
+    return false;
+    }
+    //construct varibales
+    //get first number and proceeding symbol
+    if(numbers.includes(this.boxes[this.rowIndex][1].key)){
+      if(numbers.includes(this.boxes[this.rowIndex][2].key)){
+        num1 = (+this.boxes[this.rowIndex][0].key * 100) + (+this.boxes[this.rowIndex][1].key * 10) + (+this.boxes[this.rowIndex][2].key)
+        //can't have numbers larger than 3 digits 
+        if(numbers.includes(this.boxes[this.rowIndex][3].key)){
+          return false;
+        }
+        symbol1 = this.boxes[this.rowIndex][3].key
+        index = 4
+      }else{
+      num1 = (+this.boxes[this.rowIndex][0].key * 10) + (+this.boxes[this.rowIndex][1].key)
+      symbol1 = this.boxes[this.rowIndex][2].key
+      index = 3
+      }
+    }else{
+      num1 = +this.boxes[this.rowIndex][0].key;
+      symbol1 = this.boxes[this.rowIndex][1].key;
+      index = 2
+    }
+    console.log(num1);
+    console.log(symbol1);
+    //check there are not two symbols in a row
+    if(symbols.includes(this.boxes[this.rowIndex][index].key)){
+      return false;
+    }
+    if(numbers.includes(this.boxes[this.rowIndex][index + 1].key)){
+      if(numbers.includes(this.boxes[this.rowIndex][index + 2].key)){
+        num2 = (+this.boxes[this.rowIndex][index].key * 100) + (+this.boxes[this.rowIndex][index + 1].key * 10) + (+this.boxes[this.rowIndex][index + 2].key)
+        if(numbers.includes(this.boxes[this.rowIndex][index + 3].key)){
+          return false;
+        }
+        symbol2 = this.boxes[this.rowIndex][index + 3].key
+        index += 4
+      }else{
+      num2 = (+this.boxes[this.rowIndex][index].key * 10) + (+this.boxes[this.rowIndex][index + 1].key)
+      symbol2 = this.boxes[this.rowIndex][index + 2].key
+      index += 3
+      }
+    }else{
+      num2 = +this.boxes[this.rowIndex][index].key;
+      symbol2 = this.boxes[this.rowIndex][index + 1].key;
+      index += 2
+    }
+    console.log(num2)
+    console.log(symbol2)
+    //check there are not two symbols in a row
+    if(symbols.includes(this.boxes[this.rowIndex][index].key)){
+      return false;
+    }
+    //start checking that the index has not exceeded 7
+    if(index + 1 <= 7 && numbers.includes(this.boxes[this.rowIndex][index + 1].key)){
+      if(index + 2 <= 7 && numbers.includes(this.boxes[this.rowIndex][index + 2].key)){
+        num3 = (+this.boxes[this.rowIndex][index].key * 100) + (+this.boxes[this.rowIndex][index + 1].key * 10) + (+this.boxes[this.rowIndex][index + 2].key)
+        if(index + 3 <= 7 && numbers.includes(this.boxes[this.rowIndex][index + 3].key)){
+          return false
+        }
+        if(index + 3 <= 7){
+        symbol3 = this.boxes[this.rowIndex][index + 3].key
+        symbol_count++;
+        }
+        index += 4
+      }else{
+      num3 = (+this.boxes[this.rowIndex][index].key * 10) + (+this.boxes[this.rowIndex][index + 1].key)
+      if(index + 2 <= 7){
+      symbol3 = this.boxes[this.rowIndex][index + 2].key
+      symbol_count++
+      }
+      index += 3
+      }
+    }else{
+      num3 = +this.boxes[this.rowIndex][index].key
+      if(index + 1 <= 7){
+      symbol3 = this.boxes[this.rowIndex][index + 1].key
+      symbol_count++
+      }
+      index += 2
+    }
+    console.log(num3)
+    if(index <=7){
+    console.log(symbol3)
+    }
+    //get last number if there is one
+    // if there is a fourth number it is either a one or two digit number
+    if(index <= 7){
+      if(index == 6){
+        num4 = (+this.boxes[this.rowIndex][index].key * 10) + (+this.boxes[this.rowIndex][index + 1].key)
+      }else{
+        num4 = (+this.boxes[this.rowIndex][index].key)
+      }
+      num_count++;
+      console.log(num4);
+    }
+    //at this point all the symbols and numbers are in variables
+    //check if equal sign is in the right spot then check if equation is valid
+    if(symbol_count == 2){
+      if(symbol2 == "=" && eval(num1.toString() + symbol1 + num2.toString()) == num3){
+        return true;
+      }else{
+        return false;
+      }
+    }else if(symbol_count == 3){
+      if(symbol3 == "=" && eval(num1.toString() + symbol1 + num2.toString() + symbol2 + num3.toString()) == num4){
+        return true;
+      }else{
+        return false;
+      }
+    }
+    return true;
+  }
   /**
    * @brief - the keystrokes made and planted into the grid it submitted to be checked if it is the correct guess
    */

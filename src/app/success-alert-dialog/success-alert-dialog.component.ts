@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class SuccessAlertDialogComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<SuccessAlertDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { message: string },
+    @Inject(MAT_DIALOG_DATA) public data: { message: string},
   ) {}
 
   ngOnInit(): void {
