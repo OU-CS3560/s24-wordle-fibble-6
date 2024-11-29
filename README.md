@@ -47,6 +47,7 @@ Use the following steps to build and run the web-app:
     - **_nvm use 18_**
     - The response message should appear as: 
         - **"Now using node v18.19.0 (npm v10.2.3)"**
+        - **"If not run (nvm install 18)"**
     - Additionally, a **node_modules** folder should now be installed in the **nerdle** directory
 3. Build & Compiling
     - **_ng serve_**
