@@ -81,6 +81,28 @@ export class AppComponent {
   rowIndex=0;
   //#iLoveCamelCase
   currentRowIndex=0;
+  toggleTheme(event: MouseEvent): void {
+    event.preventDefault();  // Prevent default behavior.
+    event.stopPropagation();  // Stop event propagation.
+  
+    // Check if the body has the 'light-theme' class, and toggle accordingly
+    const isLightTheme = document.body.classList.contains('light-theme');
+    if (isLightTheme) {
+      document.body.classList.remove('light-theme');
+      document.body.classList.add('dark-theme'); // Set dark-theme
+    } else {
+      document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme'); // Set light-theme
+    }
+  
+    // Update ARIA state for accessibility (if applicable)
+    const button = event.target as HTMLButtonElement;
+    if (button) {
+      button.setAttribute('aria-pressed', (!isLightTheme).toString());
+      button.blur();  // Remove focus to prevent multiple toggles
+    }
+  }
+  
   /**
    * @brief handles the case when a number or character (not enter or delete) is input into one of the boxes.
    * Checks that the box is valid and empty and that the game is not over before recording the value of the key in the box.
@@ -155,7 +177,6 @@ export class AppComponent {
     }
     
   }
-
   /**
    * @brief Listens to keyEvents to detect for certain keystrokes made by the user
    * 
@@ -165,20 +186,23 @@ export class AppComponent {
    * @see regularChange
    */
   @HostListener('window:keypress', ['$event'])
-  onKeyPress(event: KeyboardEvent){
-    if(!this.isGameOver){
-      const key = event.key
+  onKeyPress(event: KeyboardEvent): void {
+    // Only process the Enter key for submission logic
+    if (event.key === 'Enter') {
+      // Prevent other actions from being triggered
+      event.preventDefault();
+      event.stopPropagation();
+      this.enterChange(event.key);  // Only call enterChange if Enter key is pressed
+    } else {
+      // Handle regular keypress events (for input)
+      const key = event.key;
       const validKey = this.keyboard.find(k => k.key === key);
-
-      console.log(event)
-      if(event.key === 'Enter'){
-        this.enterChange(event.key)
-      }
-      else if(validKey){
-        this.regularChange(key)
+      if (validKey && !this.isGameOver) {
+        this.regularChange(key);
       }
     }
   }
+  
   /**
    * @brief -listens for delete keyboard stroke
    * @param event - keyboard event of type delete
@@ -360,13 +384,5 @@ export class AppComponent {
           }
         }
       });
-  }
-
-  /**
-   * @brief - toggles the class between light and dark mode, declared in the styles.scss file
-   * dark mode is default theme
-   */
-  toggleTheme(){
-    document.body.classList.toggle('light-theme');
   }
 }

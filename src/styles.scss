@@ -1,27 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* Global Styles */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-body { //dark mode is the default
-    --text-color: #DBDBDB;
-    --bkg-color: #011627;
-    --box-color: #DBDBDB;
-    //background color for keyboard 
-    --key-color: #304556;
-    --r: #636363;
-    --y: #fdfd96;
-    --g: lightgreen;
-    --sun: #ffff00;
-  }
+/* Default Dark Mode */
+body { 
+  --text-color: #DBDBDB;
+  --bkg-color: #011627;
+  --box-color: #DBDBDB;
+  --key-color: #304556;
+  --r: #636363;
+  --y: #fdfd96;
+  --g: lightgreen;
+  --sun: #ffff00;
+}
 
-.light-theme { //light mode 
-    --text-color: #011627;
-    --bkg-color: #edeced;
-    --box-color: #DBDBDB;
-    --key-color: #c1bec1;
-    --r: #c1bec1;
-    --y: #f89880;
-    --g: #008631;
-    --sun: #9146ff;
-  }
+/* Dark Theme */
+body.dark-theme { 
+  --text-color: #DBDBDB;
+  --bkg-color: #011627;
+  --box-color: #DBDBDB;
+  --key-color: #304556;
+  --r: #636363;
+  --y: #fdfd96;
+  --g: lightgreen;
+  --sun: #ffff00;
+}
+
+/* Light Theme */
+body.light-theme { 
+  --text-color: #011627;
+  --bkg-color: #edeced;
+  --box-color: #DBDBDB;
+  --key-color: #c1bec1;
+  --r: #c1bec1;
+  --y: #f89880;
+  --g: #008631;
+  --sun: #9146ff;
+}

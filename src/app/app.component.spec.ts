@@ -28,21 +28,19 @@ describe('AppComponent', () => {
   it('should toggle theme class on body element', () => {
     const body = document.body;
     const initialClassList = body.classList.value;
-    
+    // Mock MouseEvent
+    const mockEvent = new MouseEvent('click');
+  
     // Initially, the class list should not contain 'light-theme'
     expect(initialClassList).not.toContain('light-theme');
-
     // Toggle theme
-    component.toggleTheme();
+    component.toggleTheme(mockEvent);
     fixture.detectChanges();
-
     // After toggling, the class list should contain 'light-theme'
     expect(body.classList.value).toContain('light-theme');
-
     // Toggle again to revert to the initial state
-    component.toggleTheme();
+    component.toggleTheme(mockEvent);
     fixture.detectChanges();
-
     // After toggling again, the class list should not contain 'light-theme'
     expect(body.classList.value).not.toContain('light-theme');
   });
