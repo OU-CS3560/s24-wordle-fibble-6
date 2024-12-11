@@ -39,19 +39,40 @@ Members (4):
 
 ## Build & Comnpiling Instructions
 
-Use the following steps to build and run the web-app:
+There is a github_page for this repo but it does not reflect real time changes
+To see real time changes to code you will have too
+Use the following steps to build and run the web-app locally:
 
-1. Navigate to the **nerdle** directory
-    - **_cd nerdle_**
+1. Navigate to the "s24-wordle-fibble-6" directory
+
 2.  Change current node version to 18
-    - **_nvm use 18_**
+    - ** npm install 18 **
     - The response message should appear as: 
         - **"Now using node v18.19.0 (npm v10.2.3)"**
     - Additionally, a **node_modules** folder should now be installed in the **nerdle** directory
+
 3. Build & Compiling
-    - **_ng serve_**
+    - ** npm run build **
+    - ** npm run start **
     - Node 18 allows for bundling of building and compiling, using this command. A response message should appear: 
         - **"Application bundle generation complete..."**
         
-5. On your preferred web browser, navigate to 
+4. On your preferred web browser, navigate to 
     - **http://localhost:4200/**
+    - {4200} is the default port number this may vary depending on how many ports are currently being used
+
+# Known Bugs
+
+Logic
+- none known at this time
+UI
+- after changing to light mode, the dark/light mode will alternate on enter. 
+    ie. the light mode button is busted
+
+# Future Plans
+
+- How to play tab
+- Different sized equations to guess
+- hard mode (once you get a green/yellow you must continue to use green/yellow. If green it must be in same spot if yellow it must be used somehwere in equation)
+
+
