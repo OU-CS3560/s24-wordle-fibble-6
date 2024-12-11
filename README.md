@@ -37,7 +37,7 @@ Members (4):
 - Figma
     - A design tool used to create and showcase the user interface of the project, aiding in visualizing the final product and setting up frontend components effectively.
 
-## Build & Comnpiling Instructions
+## Build & Compiling Instructions
 
 There is a github_page for this repo but it does not reflect real time changes
 To see real time changes to code you will have too
@@ -65,6 +65,7 @@ Use the following steps to build and run the web-app locally:
 
 Logic
 - none known at this time
+  
 UI
 - after changing to light mode, the dark/light mode will alternate on enter. 
     ie. the light mode button is busted
